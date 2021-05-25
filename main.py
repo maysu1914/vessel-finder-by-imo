@@ -1,3 +1,5 @@
+import re
+
 import requests as requests
 from bs4 import BeautifulSoup
 from requests.exceptions import SSLError, ConnectionError
@@ -39,6 +41,9 @@ class VesselFinderScraper:
         data = {}
 
         if not soup.find("div", "error-content"):
+            flag_style = soup.find("div", "title-flag-icon")["style"]
+            # use django's own urlize function here
+            data["Flag URL"] = re.findall(r"(?P<url>https?://[^\s()]+)", flag_style)[0]
             for product in soup.find_all("tr"):
                 n3 = product.find("td", "n3")
                 v3 = product.find("td", "v3")
