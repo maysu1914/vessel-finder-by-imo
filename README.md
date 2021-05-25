@@ -1,2 +1,2 @@
 # vessel-finder-by-imo
-scraps vessel data from vesselfinder as an anonymous user
+scraps vessel data from vesselfinder by imo as an anonymous user
